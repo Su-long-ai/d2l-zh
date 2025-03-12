@@ -383,7 +383,7 @@ Different from in image classification or object detection, labels here are thre
 batch_size = 64
 train_iter = gluon.data.DataLoader(voc_train, batch_size, shuffle=True,
                                    last_batch='discard',
-                                   num_workers=d2l.get_dataloader_workers())
+                                   num_workers=0)
 for X, Y in train_iter:
     print(X.shape)
     print(Y.shape)
@@ -395,7 +395,7 @@ for X, Y in train_iter:
 batch_size = 64
 train_iter = torch.utils.data.DataLoader(voc_train, batch_size, shuffle=True,
                                     drop_last=True,
-                                    num_workers=d2l.get_dataloader_workers())
+                                    num_workers=0)
 for X, Y in train_iter:
     print(X.shape)
     print(Y.shape)
@@ -414,7 +414,7 @@ def load_data_voc(batch_size, crop_size):
     """Load the VOC semantic segmentation dataset."""
     voc_dir = d2l.download_extract('voc2012', os.path.join(
         'VOCdevkit', 'VOC2012'))
-    num_workers = d2l.get_dataloader_workers()
+    num_workers = 0
     train_iter = gluon.data.DataLoader(
         VOCSegDataset(True, crop_size, voc_dir), batch_size,
         shuffle=True, last_batch='discard', num_workers=num_workers)
@@ -431,7 +431,7 @@ def load_data_voc(batch_size, crop_size):
     """Load the VOC semantic segmentation dataset."""
     voc_dir = d2l.download_extract('voc2012', os.path.join(
         'VOCdevkit', 'VOC2012'))
-    num_workers = d2l.get_dataloader_workers()
+    num_workers = 0
     train_iter = torch.utils.data.DataLoader(
         VOCSegDataset(True, crop_size, voc_dir), batch_size,
         shuffle=True, drop_last=True, num_workers=num_workers)
